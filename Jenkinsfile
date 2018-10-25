@@ -19,6 +19,12 @@ pipeline {
          sh 'npm test'
       }
     }
+    
+    stage('Starting an app') {
+      steps {
+        sh 'npm start' 
+      }
+    }
   }
   
   post {
@@ -32,7 +38,6 @@ pipeline {
       
       cleanup {
         archiveArtifacts artifacts: 'app.tar.gz,test_result.tar.gz', fingerprint: true
-        deleteDir()
       }
   }
 }
