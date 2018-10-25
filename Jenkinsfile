@@ -34,6 +34,9 @@ pipeline {
       
       always {
         sh 'tar -czvf test_result.tar.gz -C coverage/lcov-report/ . > /dev/null'
+        mail to: 'testnodejsjenkins@gmail.com',
+             subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}",
+             body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}"
       }
       
       cleanup {
