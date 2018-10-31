@@ -1,0 +1,15 @@
+version: "2"
+services:
+  master:
+    image: jenkins/jenkins
+    container_name: jenkins_master
+    restart: always
+    ports:
+    - "8080:8080"
+    - "50000:50000"
+    environment:
+    - JNLP_PROTOCOL_OPTS=-Dorg.jenkinsci.remoting.engine.JnlpProtocol3.disabled=false
+    volumes:
+    - jenkins-master:/var/jenkins_home
+volumes:
+  jenkins-master:

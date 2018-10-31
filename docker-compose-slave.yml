@@ -1,0 +1,12 @@
+version: "2"
+services:
+  slave:
+    image: jenkins/jnlp-slave
+    container_name: jenkins_slave
+    environment:
+    - JNLP_PROTOCOL_OPTS=-Dorg.jenkinsci.remoting.engine.JnlpProtocol3.disabled=false
+    command: -url http://jenkins_master:8080 b43b7f5c3d4d54975b814477db2baede95fa67b3874b3a3340bdadff98ce5378 jenkins_slave
+    volumes:
+    - jenkins-slave:/var/jenkins_home
+volumes:
+  jenkins-slave:
